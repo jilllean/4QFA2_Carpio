@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multiplication Table</title>
+</head>
+<body>
+    <h1>Multiplication Table Generator</h1>
+    <p>(Enter a number between 2 and 10)</p>
+
+    <form onsubmit="return tableGenerator()">
+        <label for="beginningVal"></label>
+        <input type="text" id="beginningVal" name="beginningVal" min="2" max="10" required>
+        <label for="endingVal">by</label>
+        <input type="text" id="endingVal" name="endingVal" min="2" max="10" required><br><br>
+        <button type="submit">Click here when ready!</button>
+    </form>
+
+    <div id="multiTable"></div>
+
+    <script>
+        function tableGenerator() {
+            event.preventDefault()
+            var firstVal = parseInt(document.getElementById("beginningVal").value);
+            var secondVal = parseInt(document.getElementById("endingVal").value);
+            var table = "";
+
+            if ((isNaN(firstVal)) || (isNaN(secondVal)) || (firstVal < 2) || (firstVal > 10) || (secondVal < 2) || (secondVal > 10)) {
+                alert("Please enter numbers between 2 and 10.");
+                return;
+            }
+            for (var x = 1; x <= firstVal; x++) {
+                table += "<tr>";
+                for (var y = 1; y <= secondVal; y++) {
+                    table += "<td>" + (x * y) + "</td>";
+                }
+                table += "</tr>";
+            }
+            document.getElementById("multiTable").innerHTML = "<table border = '3px solid black'>" + table + "</table>";
+        }
+    </script>
+</body>
+</html>
